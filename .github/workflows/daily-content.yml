@@ -1,0 +1,60 @@
+name: Daily Content Pipeline
+
+# Runs the automated pipeline on a schedule (see docs/04-production-pipeline.md
+# and docs/09-roadmap.md Phase 2). Starts in review-queue mode — set the repo
+# secrets below and flip config/channel_config.yaml's automation.review_required
+# to false once you've completed the phase-out plan in docs/04.
+#
+# Required repo secrets (Settings -> Secrets and variables -> Actions):
+#   ANTHROPIC_API_KEY, ELEVENLABS_API_KEY, ELEVENLABS_VOICE_ID,
+#   PEXELS_API_KEY, YOUTUBE_CLIENT_SECRETS (base64 JSON), YOUTUBE_TOKEN (base64 JSON),
+#   IG_ACCESS_TOKEN, IG_BUSINESS_ACCOUNT_ID, MEDIA_HOST_PUBLIC_BASE_URL
+#
+# NOTE: this workflow is scaffolded but intentionally left unwired to actually
+# run pipeline.orchestrator until the accounts/keys in docs/09 Phase 0 exist —
+# uncomment the "Run pipeline" step once those are in place.
+
+on:
+  schedule:
+    - cron: "0 15 * * *"   # 08:00 America/Los_Angeles (adjust for DST manually, or switch to UTC-aware scheduling)
+  workflow_dispatch: {}     # allows manual "Run workflow" trigger for testing
+
+jobs:
+  produce-daily-short:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Write secrets to .env
+        run: |
+          cat <<EOF > .env
+          ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}
+          TTS_PROVIDER=elevenlabs
+          ELEVENLABS_API_KEY=${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID=${{ secrets.ELEVENLABS_VOICE_ID }}
+          PEXELS_API_KEY=${{ secrets.PEXELS_API_KEY }}
+          IG_ACCESS_TOKEN=${{ secrets.IG_ACCESS_TOKEN }}
+          IG_BUSINESS_ACCOUNT_ID=${{ secrets.IG_BUSINESS_ACCOUNT_ID }}
+          MEDIA_HOST_PUBLIC_BASE_URL=${{ secrets.MEDIA_HOST_PUBLIC_BASE_URL }}
+          EOF
+
+      # - name: Run pipeline
+      #   run: python -m pipeline.orchestrator --mode daily
+
+      - name: Upload review-queue artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: review-queue-${{ github.run_id }}
+          path: data/review_queue/
+          if-no-files-found: ignore
