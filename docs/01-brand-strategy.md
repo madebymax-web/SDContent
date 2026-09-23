@@ -30,14 +30,43 @@ YouTube/Instagram/TikTok before you commit**, see checklist below).
 | SD Curious | @sdcurious | Playful, implies a running series ("Ever wondered why...") |
 | America's Finest Facts | @americasfinestfacts | Longer, but leans fully into the city's identity; good for long-form YouTube title SEO even if the handle is truncated on socials. |
 
-**Recommendation: "Finest City Facts."** It's ownable (the nickname is
+**LOCKED: "Finest City Facts"** (@finestcityfacts). It's ownable (the nickname is
 San-Diego-specific, not generic like "Secret" or "Only in"), it's inherently
 shareable to locals with civic pride, and "Facts" in the name does real SEO work
 on YouTube search and Shorts recommendations.
 
-### Before you lock it in
-- [ ] Check exact handle availability on YouTube, Instagram, and TikTok (even if
-      TikTok isn't launch-priority, grab the handle defensively).
+**Availability check (2026-09-23):** searched YouTube, Instagram, and TikTok for
+`@finestcityfacts` — no existing account turned up on any of the three. This
+environment's network policy blocks direct requests to instagram.com,
+tiktok.com, and youtube.com, so this is a search-index check, not a live
+"handle taken" check on each platform's own signup form — **do the final
+availability check yourself on each platform's signup screen before you
+submit**, since search indexing can miss recently-created or private accounts.
+
+### Registering the handles — this step needs you, not me
+
+Account creation is tied to your personal identity (email/phone verification,
+a password only you should set, agreeing to each platform's ToS as yourself),
+and this session has no way to complete phone/SMS verification or type a
+password on your behalf — nor should it. Here's the exact path for each
+platform:
+
+| Platform | Where to register | What it'll ask for |
+|---|---|---|
+| YouTube | [youtube.com](https://youtube.com) → sign in with/create a Google account → Settings → "Create a channel" → set the handle to `@finestcityfacts` | Google account (email + password), channel name |
+| Instagram | [instagram.com/accounts/emailsignup](https://instagram.com/accounts/emailsignup) → sign up → set username to `finestcityfacts` → later: Settings → Account → switch to Professional/Business account (needed for the Graph API publishing in `pipeline/publisher.py`) | Email or phone, password, birthdate |
+| TikTok | [tiktok.com/signup](https://tiktok.com/signup) → sign up → Settings → username `finestcityfacts` (defensive registration only, not launching here first per your platform decision) | Email or phone, password |
+
+Once you've registered:
+- [ ] YouTube: mark the channel **not made for kids** in Settings → Channel →
+      Basic info (see `docs/06-legal-and-compliance.md`)
+- [ ] Instagram: convert to a Professional/Creator or Business account and
+      link it to a Facebook Page — required before the Graph API can publish
+      to it (see `.env.example`'s `IG_*` variables)
+- [ ] Send me the channel ID / IG Business Account ID once created and I'll
+      drop them into `config/channel_config.yaml` and `.env` for you
+
+### Before you lock it in further
 - [ ] Check domain availability if you want a simple link-in-bio page later
       (e.g. finestcityfacts.com).
 - [ ] Quick trademark sanity check — "Finest City" is a common San Diego civic
