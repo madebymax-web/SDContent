@@ -1,0 +1,40 @@
+## Environment / secrets
+.env
+.env.*
+!.env.example
+*.key
+credentials.json
+client_secret*.json
+token.json
+token.pickle
+
+## Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+## Media / generated content (large binary artifacts — don't commit)
+assets/cache/**
+!assets/cache/.gitkeep
+output/
+*.mp4
+*.mov
+*.mp3
+*.wav
+*.m4a
+*.srt
+!templates/**/*.srt
+
+## OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+## Logs
+*.log
+logs/

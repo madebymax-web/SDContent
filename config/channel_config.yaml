@@ -1,0 +1,71 @@
+# Finest City Facts — channel configuration
+# Non-secret settings only. API keys/credentials live in .env (see .env.example).
+
+channel:
+  name: "Finest City Facts"
+  handles:
+    youtube: "@finestcityfacts"       # confirm actual availability before launch, see docs/01
+    instagram: "@finestcityfacts"
+    tiktok: "@finestcityfacts"        # reserved defensively, not launching on TikTok yet
+  not_made_for_kids: true
+
+automation:
+  review_required: true               # flip to false per the phase-out plan in docs/04
+  review_queue_backend: "local"       # local | notion  (switch to notion once daily review volume justifies it)
+
+cadence:
+  shorts_per_day: 1
+  longform_per_week: 1
+  platforms:
+    - youtube_shorts
+    - instagram_reels
+    - youtube_longform
+
+pillars:
+  # relative weight for topic_selector.py's rotation; rebalance from KPI review (docs/07/08)
+  history: 1.0
+  nature: 1.0
+  hidden-gems: 1.2
+  food: 0.8
+  weird: 1.2
+  neighborhoods: 1.0
+  then-vs-now: 1.0
+
+script:
+  target_length_sec_shorts: 35
+  target_length_sec_longform_min: 8
+  words_per_minute: 150
+
+voice:
+  provider: "elevenlabs"              # elevenlabs | higgsfield  (see .env TTS_PROVIDER)
+  voice_id: ""                        # fill after picking a voice — lock for brand consistency, see docs/03
+  voice_name: ""
+
+visuals:
+  primary_source: "pexels"            # pexels | pixabay
+  search_region_bias: "San Diego, California"
+  allow_ai_fallback_for_gaps: true    # sparingly, per docs/04 — never photorealistic, must be visually stylized/illustrated
+
+music:
+  library: "youtube_audio_library"    # youtube_audio_library | pixabay_music | epidemic_sound
+  mood_pool:
+    upbeat_curious: []                # fill with track filenames/ids once selected
+    reflective_historical: []
+
+captions:
+  style: "bold_word_reveal"
+  whisper_model_size: "small"
+
+branding:
+  watermark_path: "assets/brand/watermark.png"   # add once logo/wordmark is designed (docs/09 Phase 0)
+  color_palette:
+    sand: "#E8D9B5"
+    pacific_blue: "#1B6B93"
+    sunset_coral: "#FF6B4A"
+  font_headline: ""      # fill once selected (Adobe Fonts search recommended)
+  font_body: ""
+
+publishing:
+  default_publish_time_local: "08:00"
+  timezone: "America/Los_Angeles"
+  scheduled_delay_hours_for_spotcheck: 2   # used in Phase 2 of the automation phase-out, see docs/04
