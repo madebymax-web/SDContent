@@ -36,13 +36,25 @@ script:
   target_length_sec_longform_min: 8
   words_per_minute: 150
 
+# Primary path (docs/04, updated 2026-10-05): Higgsfield faceless-video
+# workflow via a Claude Code Routine — no external API keys. The
+# elevenlabs/pexels settings below are only read by the alternate
+# standalone pipeline/*.py path.
+higgsfield:
+  channel_type: "explainer"
+  mode: "animated"
+  style_preset: "Editorial Motion Graphics"   # locked per docs/04 — must stay non-photorealistic, see docs/06
+  voice_id: "6705e465-7b52-5915-a1d8-b1222885e01d"   # "Fraser" (male, preset) — a starting pick from name/gender only,
+  voice_type: "preset"                               # not an audition. Preview it and any others via list_voices'
+  voice_name: "Fraser"                               # preview_url before treating this as final; swap freely.
+
 voice:
-  provider: "elevenlabs"              # elevenlabs | higgsfield  (see .env TTS_PROVIDER)
-  voice_id: ""                        # fill after picking a voice — lock for brand consistency, see docs/03
+  provider: "higgsfield"              # elevenlabs | higgsfield  (see .env TTS_PROVIDER) — only used by the alternate pipeline/*.py path
+  voice_id: ""                        # alternate-path ElevenLabs voice id, if that path is ever used instead
   voice_name: ""
 
 visuals:
-  primary_source: "pexels"            # pexels | pixabay
+  primary_source: "higgsfield"        # higgsfield | pexels | pixabay — higgsfield = primary path (docs/04); pexels/pixabay only for the alternate pipeline/*.py path
   search_region_bias: "San Diego, California"
   allow_ai_fallback_for_gaps: true    # sparingly, per docs/04 — never photorealistic, must be visually stylized/illustrated
 

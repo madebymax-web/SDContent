@@ -13,24 +13,27 @@ generated" when it's realistic enough that a viewer could mistake it for real
 footage of a real person, place, or event. Meta has an equivalent AI-label
 requirement on Instagram/Facebook.
 
-Practical implications for this pipeline:
-- **Real stock footage + TTS voiceover (the default pipeline): the TTS voice
-  itself is synthetic, but voiceover narration over real footage is standard
-  industry practice and is not what these policies target** — they target
-  content that fabricates realistic scenes/events/people. Using AI purely
-  for *narration* over real visuals does not require the "altered/synthetic
-  content" label. (Using AI to write the script also doesn't trigger it.)
-- **If you ever use photorealistic AI-generated video of San Diego places**
-  (e.g. Higgsfield/Seedance-class video generation used to fabricate a
-  realistic-looking scene), that content likely *does* require disclosure —
-  toggle the YouTube "altered or synthetic content" flag on upload, and
-  caption/label equivalently on Instagram. This is exactly why docs/04 keeps
-  photorealistic AI generation out of the default pipeline — it avoids the
-  question entirely for 95%+ of output.
-- **Stylized/illustrated AI content** (cartoon, motion-graphics style, used
-  sparingly for historical gaps per docs/04) is generally *not* realistic
-  enough to trigger disclosure, but label it as an illustration on-screen
-  anyway — it's good practice and costs nothing.
+Practical implications for this pipeline (updated 2026-10-05 — the
+pipeline now defaults to Higgsfield's `faceless-video` workflow for
+visuals + voice, see docs/04):
+- **Using AI for narration does not trigger disclosure.** Script-writing
+  and TTS voiceover are both AI, but neither is what this policy targets —
+  it targets fabricated *realistic scenes/events/people*, not synthetic
+  narration over any kind of visual.
+- **The style preset choice is what actually matters here.** docs/04 locks
+  the pipeline to a stylized, non-photorealistic preset ("Editorial Motion
+  Graphics") specifically so the generated visuals read as illustration,
+  not as footage a viewer could mistake for a real recording of a real
+  San Diego place. Stylized/illustrated AI content is generally *not*
+  realistic enough to trigger the disclosure requirement — but **this
+  holds only as long as the preset stays non-photorealistic.** If anyone
+  ever switches the style preset to something photoreal (or swaps in a
+  Seedance/Kling-class photoreal video model), that output likely *does*
+  require disclosure — toggle YouTube's "altered or synthetic content"
+  flag on upload and label equivalently on Instagram. Treat "which preset
+  is selected" as a compliance-relevant setting, not just an aesthetic one.
+- Labeling stylized content as an illustration on-screen anyway (even
+  though not strictly required) is good practice and costs nothing.
 - Set a reminder to re-check the current policy text periodically — platform
   AI-disclosure rules are actively evolving; treat this section as a snapshot,
   not a permanent reference.

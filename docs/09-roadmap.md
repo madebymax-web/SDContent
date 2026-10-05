@@ -7,15 +7,25 @@
 - [ ] Create channel branding assets: logo/wordmark, watermark, intro
       stinger, thumbnail template (Adobe Express, already available in this
       workspace, is a good fit for this).
-- [ ] Set up API access: Anthropic API key (script gen), ElevenLabs account +
-      voice pick (or confirm using Higgsfield TTS instead), Pexels/Pixabay
-      API keys (free tier).
+- [x] ~~Set up API access: Anthropic, ElevenLabs, Pexels~~ — not needed.
+      Per docs/04 (updated 2026-10-05), the primary pipeline runs on the
+      already-connected Higgsfield account (script + voice + visuals, one
+      workflow call) orchestrated by a Claude Code Routine. No external API
+      keys to acquire for content generation. (The `.env.example` /
+      `pipeline/*.py` keys are only needed for the alternate standalone path.)
+- [ ] Pick and lock the Higgsfield voice (`list_voices`) and confirm the
+      style preset ("Editorial Motion Graphics" recommended) in
+      `config/channel_config.yaml`.
 - [ ] Set up YouTube channel (mark not-made-for-kids per docs/06), Instagram
       Professional account linked to a Facebook Page (needed for Graph API).
+      **This is the one piece of setup that's still genuinely yours to do** —
+      it's tied to your identity (login, phone/email verification) and can't
+      be done from this session.
 - [ ] Register a Google Cloud project + OAuth credentials for YouTube Data
       API; start the Meta App Review process for Instagram publishing early
       — this can take 1-2 weeks, start it even before content is ready.
-- [ ] Fill in `.env` from `.env.example`.
+- [ ] Set up the daily Claude Code Routine that drives the pipeline (see
+      docs/04) — once you're ready, say so and it gets created.
 
 ## Phase 1 — MVP pipeline, manual-assisted (weeks 1-2)
 
