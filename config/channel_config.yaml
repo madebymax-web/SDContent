@@ -44,9 +44,9 @@ higgsfield:
   channel_type: "explainer"
   mode: "animated"
   style_preset: "Editorial Motion Graphics"   # locked per docs/04 — must stay non-photorealistic, see docs/06
-  voice_id: "6705e465-7b52-5915-a1d8-b1222885e01d"   # "Fraser" (male, preset) — a starting pick from name/gender only,
-  voice_type: "preset"                               # not an audition. Preview it and any others via list_voices'
-  voice_name: "Fraser"                               # preview_url before treating this as final; swap freely.
+  voice_id: "e6f9b893-51b1-51d3-afe9-9e0482cb7ac1"   # "Benji" (male, preset) — user-confirmed choice (2026-10-05)
+  voice_type: "preset"
+  voice_name: "Benji"
 
 voice:
   provider: "higgsfield"              # elevenlabs | higgsfield  (see .env TTS_PROVIDER) — only used by the alternate pipeline/*.py path
